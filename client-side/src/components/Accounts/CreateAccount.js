@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
-import ErrorMessage from "../Pages/ErrorMessage";
+import { validation } from "./RegValidation";
 
-const initialState = {
+export const initialState = {
   firstname: "",
   lastname: "",
   email: "",
@@ -13,63 +13,8 @@ const initialState = {
   confirmPassword: "",
 };
 
-const validation = (values) => {
-  let errorMessage = {};
-
-  if (values.firstname.trim().length === 0) {
-    errorMessage = {
-      ...errorMessage,
-      firstname: "Please enter your firstname!",
-    };
-  }
-  if (values.lastname.trim().length === 0) {
-    errorMessage = {
-      ...errorMessage,
-      lastname: "Please enter your lastname!",
-    };
-  }
-
-  if (values.email.trim().length === 0) {
-    errorMessage = {
-      ...errorMessage,
-      email: "Please enter a valid email!",
-    };
-  }
-
-  if (
-    values.password.trim().length === 0 ||
-    values.password.trim().length < 6
-  ) {
-    errorMessage = {
-      ...errorMessage,
-      password: "Password must be at least 6 characters",
-    };
-  } else if (values.password.trim().length > 20) {
-    errorMessage = {
-      ...errorMessage,
-      password: "Password too long, max 20 characters",
-    };
-  }
-
-  if (values.confirmPassword.length === 0) {
-    errorMessage = {
-      ...errorMessage,
-      confirmPassword: "Please confirm password!",
-    };
-  }
-
-  if (values.confirmPassword !== values.password) {
-    errorMessage = {
-      ...errorMessage,
-      confirmPassword: "Passwords do not match!",
-    };
-  }
-  return errorMessage;
-};
-
-const CreateAccount = () => {
+const CreateAccount = (props) => {
   const [values, setValues] = useState(initialState);
-
   const [error, setError] = useState();
 
   const inputHandler = (key) => (e) => {
@@ -123,7 +68,6 @@ const CreateAccount = () => {
             Home
           </Link>
         </nav>
-
         <form className="form" onSubmit={submitFormHandler}>
           <h2>Register Account</h2>
           <div className="form-row">
@@ -138,11 +82,8 @@ const CreateAccount = () => {
               name="firstName"
               onChange={inputHandler("firstname")}
             ></input>
-            <div className="errorMessage">
-              {error && <ErrorMessage>{error && error.firstname}</ErrorMessage>}
-            </div>
+            <div className="errorMessage">{error && error.firstname}</div>
           </div>
-
           <div className="form-row">
             <label className="form-label" htmlFor="efternamn">
               Lastname
@@ -155,11 +96,8 @@ const CreateAccount = () => {
               name="lastName"
               onChange={inputHandler("lastname")}
             ></input>
-            <div className="errorMessage">
-              {error && <ErrorMessage>{error && error.lastname}</ErrorMessage>}
-            </div>
+            <div className="errorMessage">{error && error.lastname}</div>
           </div>
-
           <div className="form-row">
             <label className="form-label" htmlFor="email">
               Email
@@ -173,12 +111,9 @@ const CreateAccount = () => {
               onChange={inputHandler("email")}
             ></input>
             <div className="errorMessage">
-              <div className="errorMessage">
-                {error && <ErrorMessage>{error && error.email}</ErrorMessage>}
-              </div>
+              <div className="errorMessage">{error && error.email}</div>
             </div>
           </div>
-
           <div className="form-row">
             <label className="form-label" htmlFor="Password">
               Password
@@ -191,11 +126,8 @@ const CreateAccount = () => {
               name="password"
               onChange={inputHandler("password")}
             ></input>
-            <div className="errorMessage">
-              {error && <ErrorMessage>{error && error.password}</ErrorMessage>}
-            </div>
+            <div className="errorMessage">{error && error.password}</div>
           </div>
-
           <div className="form-row">
             <label className="form-label" htmlFor="confirmPw">
               Confirm password
@@ -208,12 +140,7 @@ const CreateAccount = () => {
               name="confirmPassword"
               onChange={inputHandler("confirmPassword")}
             ></input>
-
-            <div className="errorMessage">
-              {error && (
-                <ErrorMessage>{error && error.confirmPassword}</ErrorMessage>
-              )}
-            </div>
+            <div className="errorMessage">{error && error.confirmPassword}</div>
           </div>
           <div className="form-row ">
             <button className="btn btn-block" type="submit">

@@ -19,6 +19,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   // applying token jwt-PAYLOAD IS THE ID, THE SECRET IS THE JWT_SECRET,THE HEADER IS AUTOMATIC CREATED
   const token = signToken(newUser._id);
   console.log("new user registered!");
+
   res.status(201).json({
     status: "success",
     // logging in directly after signing up,so we send token directly here

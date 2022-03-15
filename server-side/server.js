@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // import routes
-const auth = require("./server-side/routes/auth");
+const auth = require("./routes/auth");
 app.use("/auth", auth);
 
 // connect to DB
