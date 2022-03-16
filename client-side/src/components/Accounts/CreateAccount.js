@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import { validation } from "./RegValidation";
@@ -16,13 +16,18 @@ export const initialState = {
 const CreateAccount = (props) => {
   const [values, setValues] = useState(initialState);
   const [error, setError] = useState();
+  let navigate = useNavigate();
 
   const inputHandler = (key) => (e) => {
-    setValues({ ...values, [key]: e.target.value });
+    if (e.target.value.length > 0) {
+      setError({ ...error, [key]: "" });
+      setValues({ ...values, [key]: e.target.value });
+    }
   };
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
+
     const errorMessage = validation(values);
 
     if (Object.keys(errorMessage).length > 0) {
@@ -39,13 +44,19 @@ const CreateAccount = (props) => {
         const data = response;
         console.log(data);
         console.log("Inserted");
-        setValues({
-          firstname: "",
-          lastname: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        });
+        if (response?.data?.status === "success") {
+          localStorage.setItem("isAuthenticated", response.data.token);
+          setTimeout(() => {
+            navigate("/usershomepage");
+          }, 2000);
+        }
+        // setValues({
+        //   firstname: "",
+        //   lastname: "",
+        //   email: "",
+        //   password: "",
+        //   confirmPassword: "",
+        // });
         setError("");
       } catch (err) {
         console.log(err);

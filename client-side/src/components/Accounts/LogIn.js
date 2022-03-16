@@ -24,7 +24,9 @@ const LogIn = (props) => {
       console.log(response);
       if (response?.data?.status === "success") {
         localStorage.setItem("isAuthenticated", response.data.token);
-        history("/usershomepage");
+        setTimeout(() => {
+          history("/usershomepage");
+        }, 1000);
       }
     } catch (err) {
       console.log(err);
