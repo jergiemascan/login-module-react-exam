@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import "../../index.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -45,10 +44,8 @@ const LogIn = (props) => {
             Home
           </Link>
         </nav>
-
         <form className="form" onSubmit={logInSubmitHandler}>
           <h2>Sign in</h2>
-
           <div className="form-row">
             <label className="form-label" htmlFor="e-mail">
               Email
@@ -76,7 +73,6 @@ const LogIn = (props) => {
                 setPassword(e.target.value);
               }}
             ></input>
-
             {loginStatus.isError && (
               <div>
                 <strong style={{ color: "red" }}>{loginStatus.message}</strong>
@@ -90,9 +86,11 @@ const LogIn = (props) => {
           </div>
           <div className="member">
             <p>Not a member?</p>
-            <Link className="links" to="/createaccount">
-              Register
-            </Link>
+            <p>
+              <Link className="links" to="/createaccount">
+                Register
+              </Link>
+            </p>
           </div>
         </form>
       </div>

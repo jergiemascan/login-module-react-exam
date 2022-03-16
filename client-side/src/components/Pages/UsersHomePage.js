@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../index.css";
 import Footer from "../Footer/Footer";
 import { Button } from "react-bootstrap";
 
@@ -23,7 +22,9 @@ const UsersHomepage = () => {
           </Button>
         </nav>
         <header className="main-div">
-          <h1 className="h1-adventure">Welcome to Amazing Adventure</h1>
+          <h1 className="h1-adventure">
+            Welcome to Amazing <br></br>Adventure
+          </h1>
         </header>
       </div>
       <footer>

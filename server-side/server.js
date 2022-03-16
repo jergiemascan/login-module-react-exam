@@ -11,16 +11,13 @@ app.use(express.json());
 
 dotenv.config({ path: "./config.env" });
 
-// dev server
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello, this is backend server👋🏻" });
 });
 
-// import routes
 const auth = require("./routes/auth");
 app.use("/auth", auth);
 
-// connect to DB
 mongoose
   .connect(
     "mongodb+srv://Jiji:Davao2022@cluster0.ze4n2.mongodb.net/form-validation?retryWrites=true&w=majority",
@@ -32,7 +29,6 @@ mongoose
     }
   )
   .then((con) => {
-    // console.log(con.connections);
     console.log("Connected to DB");
   });
 

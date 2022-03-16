@@ -6,7 +6,7 @@ import Home from "./components/Pages/Home";
 import "./index.css";
 import ErrorPage from "./components/Pages/ErrorPage";
 import UsersHomepage from "./components/Pages/UsersHomePage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/Pages/ProtectedRoute";
 import Restricted from "./components/Pages/Restricted";
 
 function App() {

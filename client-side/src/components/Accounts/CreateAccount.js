@@ -1,7 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Axios from "axios";
 import { validation } from "./RegValidation";
 
@@ -13,7 +11,7 @@ export const initialState = {
   confirmPassword: "",
 };
 
-const CreateAccount = (props) => {
+const CreateAccount = () => {
   const [values, setValues] = useState(initialState);
   const [error, setError] = useState();
   let navigate = useNavigate();
@@ -25,8 +23,8 @@ const CreateAccount = (props) => {
     }
   };
 
-  const submitFormHandler = async (event) => {
-    event.preventDefault();
+  const submitFormHandler = async (e) => {
+    e.preventDefault();
 
     const errorMessage = validation(values);
 
@@ -35,33 +33,21 @@ const CreateAccount = (props) => {
     } else {
       try {
         const response = await Axios.post("/auth/signup", {
-          firstname: values.lastname,
+          firstname: values.firstname,
           lastname: values.lastname,
           email: values.email,
           password: values.password,
           confirmPassword: values.confirmPassword,
         });
-        const data = response;
-        console.log(data);
-        console.log("Inserted");
         if (response?.data?.status === "success") {
           localStorage.setItem("isAuthenticated", response.data.token);
           setTimeout(() => {
             navigate("/usershomepage");
           }, 2000);
         }
-        // setValues({
-        //   firstname: "",
-        //   lastname: "",
-        //   email: "",
-        //   password: "",
-        //   confirmPassword: "",
-        // });
         setError("");
       } catch (err) {
-        console.log(err);
         let errorMessage = {};
-
         errorMessage = {
           ...errorMessage,
           email: "Email is already registered",
@@ -160,9 +146,11 @@ const CreateAccount = (props) => {
           </div>
           <div className="member">
             <p>Already a member?</p>
-            <Link className="links" to="/login">
-              Sign in
-            </Link>
+            <p>
+              <Link className="links" to="/login">
+                Sign in
+              </Link>
+            </p>
           </div>
         </form>
       </div>
