@@ -1,5 +1,6 @@
 export const validation = (values, props) => {
   let errorMessage = {};
+  const validEmail = new RegExp("^[a-zA-Z0-9._:$-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$");
 
   if (values.firstname.trim().length === 0) {
     errorMessage = {
@@ -7,6 +8,7 @@ export const validation = (values, props) => {
       firstname: "Please enter your firstname!",
     };
   }
+
   if (values.lastname.trim().length === 0) {
     errorMessage = {
       ...errorMessage,
@@ -15,6 +17,11 @@ export const validation = (values, props) => {
   }
 
   if (values.email.trim().length === 0) {
+    errorMessage = {
+      ...errorMessage,
+      email: "Please enter your email!",
+    };
+  } else if (!validEmail.test(values.email)) {
     errorMessage = {
       ...errorMessage,
       email: "Please enter a valid email!",
