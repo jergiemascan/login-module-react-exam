@@ -20,7 +20,7 @@ app.use("/auth", auth);
 
 mongoose
   .connect(
-    "mongodb+srv://Jiji:Davao2022@cluster0.ze4n2.mongodb.net/form-validation?retryWrites=true&w=majority",
+    process.env.DATABASE,
 
     {
       useNewUrlParser: true,
