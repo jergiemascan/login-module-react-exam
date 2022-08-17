@@ -10,16 +10,11 @@ jobs:
   build:
 
     runs-on: self-hosted
-    # Node.js tool installer
-    # Finds or downloads and caches the specified version spec of Node.js and adds it to the PATH
-    - task: NodeTool@0
-       inputs:
-    #versionSpec: '6.x' 
-        versionSpec: node-version: [16.x]
-    #force32bit: false # Optional
-    #checkLatest: false # Optional
-
+    
     steps:
+     - task: NodeTool@0
+        inputs:
+          versionSpec: node-version: [16.x]
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version}}
         uses: actions/setup-node@v3
