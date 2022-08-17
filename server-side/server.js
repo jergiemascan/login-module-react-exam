@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
-// const cors = require("cors");
-const bodyParser = require("body-parser");
-const dotenv = require("dotenv");
 
 // build process
 const path = require("path");
 app.use(express.static(path.join(__dirname, "/client-side/build")));
+
+// const cors = require("cors");
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 
 // app.use(cors());
 app.use(bodyParser.json());
