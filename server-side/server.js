@@ -5,6 +5,10 @@ const app = express();
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
+// build process
+const path = require("path");
+app.use(express.static(path.join(__dirname, "/client-side/build")));
+
 // app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
@@ -34,6 +38,6 @@ mongoose
   });
 
 // port
-app.listen(3001, () => {
-  console.log("Hello from server! We are listening on port 3001");
+app.listen(5000, () => {
+  console.log("Hello from server! We are listening on port 5000");
 });
