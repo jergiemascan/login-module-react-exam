@@ -15,6 +15,6 @@ jobs:
         uses: actions/setup-node@v3
 
       - run: npm ci
-          cd client-side
+      - run: cd client-side
       - run: npm ci
       - run: npm run build
