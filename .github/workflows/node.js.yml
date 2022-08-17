@@ -16,4 +16,5 @@ jobs:
 
       - run: |
           npm ci
+          cd client-side 
           npm run build
