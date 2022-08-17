@@ -12,12 +12,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use node.js ${{ matrix.node-version}}
-        uses: actions/setup-node@v1
+      - name: Use Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version}}
+          cache: "npm"
       - run: |
-          npm i
+          npm ci
           cd client-side 
-          npm i
+          npm ci
           npm run build
