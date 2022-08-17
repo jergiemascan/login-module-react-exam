@@ -39,6 +39,6 @@ mongoose
   });
 
 // port
-app.listen(3001, () => {
+app.listen(5000, () => {
   console.log("Hello from server! We are listening on port 3001");
 });
