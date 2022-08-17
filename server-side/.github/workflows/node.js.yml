@@ -18,6 +18,6 @@ jobs:
           node-version: ${{ matrix.node-version}}
       - run: |
           npm i
-          cd client-side 
+          cd frontend 
           npm i
           npm run build

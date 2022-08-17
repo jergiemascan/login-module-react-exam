@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 
 // build process
 const path = require("path");
-app.use(express.static(path.join(__dirname, "/client-side/build")));
+app.use(express.static(path.join(__dirname, "/frontend/build")));
 
 // app.use(cors());
 app.use(bodyParser.json());
