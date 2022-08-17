@@ -16,8 +16,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version}}
       - task: NodeTool@0
-         inputs:
-          versionSpec: '6.x' 
+        inputs:
+          versionSpec: "16.x"
+        displayName: "TASK | Install Node.js 16.x "
 
       - run: |
           npm i
