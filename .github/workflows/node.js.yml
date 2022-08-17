@@ -8,19 +8,18 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
-    
+
     steps:
       - task: NodeTool@0
         inputs:
-        versionSpec: node-version: '16.x'
+        versionSpec: "16.x"
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version}}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version}}
-          cache: 'npm'
+          cache: "npm"
 
       - run: |
           npm ci
