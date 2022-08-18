@@ -26,3 +26,4 @@ jobs:
       - run: cd client-side
       - run: npm i
       - run: npm run build
+      - run: npm run
