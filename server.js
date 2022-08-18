@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello, this is backend server👋🏻" });
 });
 
-const auth = require("./routes/auth");
+const auth = require("./server-side/routes/auth");
 app.use("/auth", auth);
 
 mongoose
@@ -39,6 +39,6 @@ mongoose
   });
 
 // port
-app.listen(5000, () => {
+app.listen(3001, () => {
   console.log("Hello from server! We are listening on port 3001");
 });
