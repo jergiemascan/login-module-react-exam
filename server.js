@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello, this is backend server👋🏻" });
 });
 
-const auth = require("./server-side/routes/auth");
+const auth = require("./routes/auth");
 app.use("/auth", auth);
 
 mongoose
