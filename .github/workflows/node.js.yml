@@ -25,4 +25,4 @@ jobs:
           npm i
           cd client-side
           npm i
-          npm run build --if-present
+          npm run build
